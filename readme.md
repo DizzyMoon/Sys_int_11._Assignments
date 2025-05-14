@@ -1,7 +1,14 @@
 # A - Setting up login flow with firebase authentication
+
+For the following example I will only show how to login with google
+
 ## Creating a project
 Navigate to the firebase console and create a new project
 Follow the setup flow
+
+Open the "Authentication" tab and navigate to the "sign-in method" page.
+
+Add google as a provider
 
 
 ## Attaching a firebase application
@@ -66,3 +73,33 @@ It should look something like this:
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
+
+
+We then need to initialize the auth and provider objects
+Add the following at the bottom of your main.js:
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+For the following example we'll trigger a google login popup:
+
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+
+The above code will trigger a login prompt with google. You could eventually trigger this code by wrapping it in a function triggered by an event listener
