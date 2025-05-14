@@ -28,21 +28,23 @@ $ npm install firebase
 Create index.html and main.js
 
 I recommend the following structure:
-
-    ├── index.html
-    ├── package.json
-    ├── package-lock.json
-    ├── public
-    │   └── vite.svg
-    └── src
-        ├── counter.js
-        ├── javascript.svg
-        ├── main.js
-        └── style.css
+```
+├── index.html
+├── package.json
+├── package-lock.json
+├── public
+│   └── vite.svg
+└── src
+    ├── counter.js
+    ├── javascript.svg
+    ├── main.js
+    └── style.css
+```
 
 Remember to import your main.js as a module in index.html:
-    <script type="module" src="src/main.js"></script>
-
+```
+<script type="module" src="src/main.js"></script>
+```
 At this point it may be a good idea to check if the attribute "type" in package.json is set to "module".
 
 ## Setting up authentication flow
@@ -78,29 +80,31 @@ const analytics = getAnalytics(app);
 
 We then need to initialize the auth and provider objects
 Add the following at the bottom of your main.js:
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
+```
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+```
 For the following example we'll trigger a google login popup:
-
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
+```
+signInWithPopup(auth, provider)
+    .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+    }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+    });
+```
 
 The above code will trigger a login prompt with google. You could eventually trigger this code by wrapping it in a function triggered by an event listener
