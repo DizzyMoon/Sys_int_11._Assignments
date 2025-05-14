@@ -29,16 +29,16 @@ Create index.html and main.js
 
 I recommend the following structure:
 
-├── index.html
-├── package.json
-├── package-lock.json
-├── public
-│   └── vite.svg
-└── src
-    ├── counter.js
-    ├── javascript.svg
-    ├── main.js
-    └── style.css
+├── index.html <br>
+├── package.json <br>
+├── package-lock.json <br>
+├── public <br>
+│   └── vite.svg <br>
+└── src <br>
+    ├── counter.js <br>
+    ├── javascript.svg <br>
+    ├── main.js <br>
+    └── style.css <br>
 
 Remember to import your main.js as a module in index.html:
     <script type="module" src="src/main.js"></script>
