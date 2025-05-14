@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Script running")
 })
 
+import 'dotenv/config';
+
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 
@@ -14,13 +16,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCImfJhSPObjTl6Sc_a-MNGvrpa9qevzEE",
-    authDomain: "sys-int-auth.firebaseapp.com",
-    projectId: "sys-int-auth",
-    storageBucket: "sys-int-auth.firebasestorage.app",
-    messagingSenderId: "391289900493",
-    appId: "1:391289900493:web:2f3003cde830e1e0978884",
-    measurementId: "G-K0X3L0T9KE"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
 };
 
 // Initialize Firebase
